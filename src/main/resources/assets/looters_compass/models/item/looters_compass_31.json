@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "looters_compass:item/looters_compass_31"
+  }
+}

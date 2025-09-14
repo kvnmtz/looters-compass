@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+issueTrackerURL = "https://github.com/kvnmtz/looters-compass/issues"
+license = "WTFPL"
+
+[[mods]]
+modId = "looters_compass"
+version = "${version}"
+displayName = "Looter's Compass"
+authors = "3xpl01t"
+description = '''
+Adds a compass that points to the nearest un-opened loot container from the Lootr mod.
+'''
+#logoFile = ""
+
+[[dependencies.looters_compass]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.looters_compass]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.looters_compass]]
+modId = "lootr"
+mandatory = true
+versionRange = "[0.7.29.68,)"
+ordering = "AFTER"
+side = "BOTH"
