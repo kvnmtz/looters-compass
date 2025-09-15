@@ -20,6 +20,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
 import noobanidus.mods.lootr.api.blockentity.ILootBlockEntity;
+import net.minecraft.world.phys.AABB;
+import noobanidus.mods.lootr.entity.LootrChestMinecartEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -66,13 +68,33 @@ public class LootersCompassItem extends Item {
 
     private void searchForLootContainers(@NotNull ItemStack stack, @NotNull Level level, @NotNull Player player) {
         var playerPos = player.blockPosition();
-        BlockPos nearestChest = null;
         var nearestDistance = Double.MAX_VALUE;
 
         var maxRadiusXZ = CommonConfig.SEARCH_RADIUS_XZ.get();
         var maxRadiusY = CommonConfig.SEARCH_RADIUS_Y.get();
 
-        // search in expanding rings around the player
+        var nearestContainer = searchLootrContainers(level, player, playerPos, maxRadiusXZ, maxRadiusY);
+        if (nearestContainer != null) {
+            nearestDistance = playerPos.distSqr(nearestContainer);
+        }
+
+        var nearestMinecartPos = searchLootrMinecarts(level, player, playerPos, maxRadiusXZ, maxRadiusY);
+        if (nearestMinecartPos != null) {
+            var minecartDistance = playerPos.distSqr(nearestMinecartPos);
+            if (minecartDistance < nearestDistance) {
+                nearestContainer = nearestMinecartPos;
+            }
+        }
+
+        if (nearestContainer != null) {
+            setFoundPosition(stack, nearestContainer);
+        } else {
+            clearFoundPosition(stack);
+        }
+    }
+
+    @Nullable
+    private BlockPos searchLootrContainers(@NotNull Level level, @NotNull Player player, @NotNull BlockPos playerPos, int maxRadiusXZ, int maxRadiusY) {
         for (var radius = 1; radius <= maxRadiusXZ; radius++) {
             for (var x = -radius; x <= radius; x++) {
                 for (var z = -radius; z <= radius; z++) {
@@ -81,26 +103,39 @@ public class LootersCompassItem extends Item {
 
                     for (var y = -maxRadiusY; y <= maxRadiusY; y++) {
                         var checkPos = playerPos.offset(x, y, z);
-
-                        if (isUnopenedLootrContainer(level, checkPos, player)) {
-                            var distance = playerPos.distSqr(checkPos);
-                            if (distance < nearestDistance) {
-                                nearestDistance = distance;
-                                nearestChest = checkPos;
-                            }
-                        }
+                        if (isUnopenedLootrContainer(level, checkPos, player)) return checkPos;
                     }
                 }
             }
-
-            if (nearestChest != null) break;
         }
 
-        if (nearestChest != null) {
-            setFoundPosition(stack, nearestChest);
-        } else {
-            clearFoundPosition(stack);
+        return null;
+    }
+
+    @Nullable
+    private BlockPos searchLootrMinecarts(@NotNull Level level, @NotNull Player player, @NotNull BlockPos playerPos, int maxRadiusXZ, int maxRadiusY) {
+        var searchBox = new AABB(
+                playerPos.getX() - maxRadiusXZ, playerPos.getY() - maxRadiusY, playerPos.getZ() - maxRadiusXZ,
+                playerPos.getX() + maxRadiusXZ, playerPos.getY() + maxRadiusY, playerPos.getZ() + maxRadiusXZ
+        );
+
+        var minecarts = level.getEntitiesOfClass(LootrChestMinecartEntity.class, searchBox);
+
+        BlockPos nearestMinecartPos = null;
+        var nearestDistance = Double.MAX_VALUE;
+
+        for (var minecart : minecarts) {
+            if (minecart.isOpened()) continue;
+
+            var minecartPos = minecart.blockPosition();
+            var distance = playerPos.distSqr(minecartPos);
+            if (distance < nearestDistance) {
+                nearestDistance = distance;
+                nearestMinecartPos = minecartPos;
+            }
         }
+
+        return nearestMinecartPos;
     }
 
     private boolean isUnopenedLootrContainer(@NotNull Level level, @NotNull BlockPos pos, @NotNull Player player) {
