@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "looters_compass:item/looters_compass_28"
+    "layer0": "looters_compass:item/looters_compass",
+    "layer1": "looters_compass:item/looters_compass_needle_28"
   }
 }

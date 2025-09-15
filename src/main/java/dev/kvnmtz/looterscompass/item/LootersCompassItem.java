@@ -48,6 +48,13 @@ public class LootersCompassItem extends Item {
 
                         return GlobalPos.of(level.dimension(), foundPos);
                     }));
+
+            ItemProperties.register(item, ResourceLocation.parse("spinning"),
+                    (stack, level, entity, seed) -> {
+                        if (!(stack.getItem() instanceof LootersCompassItem compass)) return 0.0f;
+                        var foundPos = compass.getFoundPosition(stack);
+                        return foundPos == null ? 1.0f : 0.0f;
+                    });
         }
     }
 
