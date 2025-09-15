@@ -1,6 +1,7 @@
 package dev.kvnmtz.looterscompass.item;
 
-import dev.kvnmtz.looterscompass.config.CommonConfig;
+import dev.kvnmtz.looterscompass.config.ClientConfig;
+import dev.kvnmtz.looterscompass.config.ServerConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.item.CompassItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -68,7 +69,7 @@ public class LootersCompassItem extends Item {
     public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int slotId, boolean isSelected) {
         if (!level.isClientSide) return;
         if (!(entity instanceof Player player)) return;
-        if (player.tickCount % CommonConfig.SEARCH_FREQUENCY_TICKS.get() != 0) return;
+        if (player.tickCount % ClientConfig.SEARCH_FREQUENCY_TICKS.get() != 0) return;
 
         searchForLootContainers(stack, level, player);
     }
@@ -77,8 +78,8 @@ public class LootersCompassItem extends Item {
         var playerPos = player.blockPosition();
         var nearestDistance = Double.MAX_VALUE;
 
-        var maxRadiusXZ = CommonConfig.SEARCH_RADIUS_XZ.get();
-        var maxRadiusY = CommonConfig.SEARCH_RADIUS_Y.get();
+        var maxRadiusXZ = ServerConfig.SEARCH_RADIUS_XZ.get();
+        var maxRadiusY = ServerConfig.SEARCH_RADIUS_Y.get();
 
         var nearestContainer = searchLootrContainers(level, player, playerPos, maxRadiusXZ, maxRadiusY);
         if (nearestContainer != null) {

@@ -1,6 +1,8 @@
 package dev.kvnmtz.looterscompass;
 
+import dev.kvnmtz.looterscompass.config.ClientConfig;
 import dev.kvnmtz.looterscompass.config.CommonConfig;
+import dev.kvnmtz.looterscompass.config.ServerConfig;
 import dev.kvnmtz.looterscompass.item.registry.ModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
@@ -15,7 +17,9 @@ public final class LootersCompassMod {
         var modEventBus = context.getModEventBus();
         ModItems.register(modEventBus);
 
+        context.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
         context.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
+        context.registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC);
     }
 
     public static ResourceLocation asResource(String path) {
