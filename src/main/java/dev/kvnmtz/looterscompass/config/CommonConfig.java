@@ -9,6 +9,7 @@ public class CommonConfig {
     public static final ForgeConfigSpec.IntValue SEARCH_RADIUS_XZ;
     public static final ForgeConfigSpec.IntValue SEARCH_RADIUS_Y;
     public static final ForgeConfigSpec.IntValue SEARCH_FREQUENCY_TICKS;
+    public static final ForgeConfigSpec.BooleanValue DISABLE_RECIPE;
 
     static {
         SEARCH_RADIUS_XZ = BUILDER
@@ -23,6 +24,10 @@ public class CommonConfig {
                 .comment("How often to search for chests (in ticks)")
                 .comment("20 ticks = 1 second")
                 .defineInRange("search_frequency", 20, 1, 200);
+
+        DISABLE_RECIPE = BUILDER
+                .comment("Whether the crafting recipe for the Looter's Compass should be disabled")
+                .define("disable_recipe", false);
 
         SPEC = BUILDER.build();
     }

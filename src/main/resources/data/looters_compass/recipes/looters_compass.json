@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:compass"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "E": {
+      "item": "minecraft:ender_chest"
+    },
+    "S": {
+      "item": "minecraft:echo_shard"
+    }
+  },
+  "pattern": [
+    "GEG",
+    "GCG",
+    "GSG"
+  ],
+  "result": {
+    "item": "looters_compass:looters_compass"
+  }
+}
