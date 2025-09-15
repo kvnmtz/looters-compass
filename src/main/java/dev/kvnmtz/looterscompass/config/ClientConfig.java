@@ -11,7 +11,7 @@ public class ClientConfig {
     static {
         SEARCH_FREQUENCY_TICKS = BUILDER
                 .comment("How often to search for chests (in ticks)")
-                .comment("20 ticks = 1 second")
+                .comment("(20 ticks = 1 second)")
                 .defineInRange("search_frequency", 20, 1, 200);
 
         SPEC = BUILDER.build();
