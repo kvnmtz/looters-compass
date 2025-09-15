@@ -9,6 +9,7 @@ public class CommonConfig {
     public static final ForgeConfigSpec.IntValue SEARCH_RADIUS_XZ;
     public static final ForgeConfigSpec.IntValue SEARCH_RADIUS_Y;
     public static final ForgeConfigSpec.IntValue SEARCH_FREQUENCY_TICKS;
+    public static final ForgeConfigSpec.BooleanValue ADD_TO_100_LOOT_ADVANCEMENT_REWARDS;
     public static final ForgeConfigSpec.BooleanValue DISABLE_RECIPE;
 
     static {
@@ -24,6 +25,11 @@ public class CommonConfig {
                 .comment("How often to search for chests (in ticks)")
                 .comment("20 ticks = 1 second")
                 .defineInRange("search_frequency", 20, 1, 200);
+
+        ADD_TO_100_LOOT_ADVANCEMENT_REWARDS = BUILDER
+                .comment("Whether the Looter's Compass should also be rewarded to the player when the \"Centennial\" advancement is made")
+                .comment("(This is Lootr's advancement for opening 100 loot containers)")
+                .define("add_to_centennial_advancement_rewards", false);
 
         DISABLE_RECIPE = BUILDER
                 .comment("Whether the crafting recipe for the Looter's Compass should be disabled")
