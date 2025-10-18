@@ -15,15 +15,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Map;
 
 @Mixin(RecipeManager.class)
-public class RecipeManagerMixin {
+public abstract class RecipeManagerMixin {
 
     private static final ResourceLocation RECIPE_TO_REMOVE = LootersCompassMod.asResource("looters_compass");
 
     @Inject(
-            method = "apply(Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V",
+            method = "apply(Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceManager;" +
+                    "Lnet/minecraft/util/profiling/ProfilerFiller;)V",
             at = @At("HEAD")
     )
-    private void removeCraftingRecipe(Map<ResourceLocation, JsonElement> object, ResourceManager resourceManager, ProfilerFiller profiler, CallbackInfo ci) {
+    private void removeCraftingRecipe(Map<ResourceLocation, JsonElement> object, ResourceManager resourceManager,
+                                      ProfilerFiller profiler, CallbackInfo ci) {
         if (!CommonConfig.DISABLE_RECIPE.get()) return;
 
         var iterator = object.entrySet().iterator();

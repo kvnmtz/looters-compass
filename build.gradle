@@ -38,6 +38,14 @@ repositories {
             includeGroup 'curse.maven'
         }
     }
+
+    // Embeddium
+    maven {
+        url = 'https://maven.blamejared.com'
+    }
+
+    // MixinExtras
+    mavenCentral()
 }
 
 dependencies {
@@ -50,8 +58,13 @@ dependencies {
 
     forge "net.minecraftforge:forge:$project.forge_version"
 
-    modCompileOnly "curse.maven:lootr-361276:6961345"
-    modRuntimeOnly "curse.maven:lootr-361276:6961345"
+    modImplementation("curse.maven:lootr-361276:6961345")
+
+    modCompileOnly("org.embeddedt:embeddium-1.20.1:0.3.9-git.f603a93+mc1.20.1")
+    modRuntimeOnly("org.embeddedt:embeddium-1.20.1:0.3.9-git.f603a93+mc1.20.1")
+
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0"))
+    implementation(include("io.github.llamalad7:mixinextras-forge:0.5.0"))
 }
 
 processResources {

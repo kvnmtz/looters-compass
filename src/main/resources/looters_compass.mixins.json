@@ -3,7 +3,14 @@
   "package": "dev.kvnmtz.looterscompass.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
+  "plugin": "dev.kvnmtz.looterscompass.mixin.plugin.MixinPlugin",
   "client": [
+    "ClientLevelAccessor",
+    "EntityAccessor",
+    "LevelRendererMixin",
+    "lootr.LootrChestBlockEntityMixin",
+    "lootr.LootrShulkerBlockEntityMixin",
+    "embeddium.SodiumWorldRendererMixin"
   ],
   "mixins": [
     "RecipeManagerMixin"
