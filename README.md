@@ -8,8 +8,9 @@ Makes finding loot containers from the [Lootr](https://modrinth.com/mod/lootr) m
 
 This mod adds a new item called the **Looter's Compass**.
 It points to the nearest **loot containers** from the Lootr mod, which has **not yet been opened** by the player.
-It has a maximum search radius of 64 blocks horizontally and 16 blocks vertically by default (configurable).
+It has a maximum search radius of 32 blocks horizontally and 16 blocks vertically by default (configurable).
 It works with any kind of Lootr's loot containers (chests, barrels, shulker boxes, chest minecarts ...).
+When right-clicking with the Looter's Compass in the player's hands, the currently targeted loot container will be **highlighted** (like the Glowing effect does it) for a few seconds.
 If no container is found, an idle animation will be shown.
 Searching for the loot containers happens on the client-side, which means that server performance will not be hurt in any way.
 
@@ -49,10 +50,13 @@ The server config file is located in:
 
 It contains the following options:
 
-| Option                                  | Description                                                                                                                                                       | Default |
-|-----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| `search_radius_horizontal`              | Horizontal search radius for finding loot containers (in blocks)                                                                                                  | `64`    |
-| `search_radius_vertical`                | Vertical search radius for finding loot containers (in blocks)                                                                                                    | `16`    |
+| Option                       | Description                                                                                     | Default |
+|------------------------------|-------------------------------------------------------------------------------------------------|---------|
+| `search_radius_horizontal`   | Horizontal search radius for finding loot containers (in blocks)                                | `32`    |
+| `search_radius_vertical`     | Vertical search radius for finding loot containers (in blocks)                                  | `16`    |
+| `enable_loot_container_glow` | Whether to enable the ability to make loot containers glow when right-clicking with the compass | `true`  |
+| `glow_cooldown`              | Cooldown for the glow feature in ticks (20 ticks = 1 second)                                    | `300`   |
+| `glow_duration`              | Duration for how long loot containers should glow in seconds                                    | `5`     |
 
 ## 💡 Tips for modpack makers
 
