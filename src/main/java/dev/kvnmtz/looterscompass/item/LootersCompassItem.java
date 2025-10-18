@@ -165,6 +165,9 @@ public class LootersCompassItem extends Item {
 
     @Nullable
     private BlockPos searchLootrContainers(@NotNull Level level, @NotNull Player player, @NotNull BlockPos playerPos, int maxRadiusXZ, int maxRadiusY) {
+        BlockPos nearestContainer = null;
+        double nearestDistanceSq = Double.MAX_VALUE;
+
         for (var radius = 1; radius <= maxRadiusXZ; radius++) {
             for (var x = -radius; x <= radius; x++) {
                 for (var z = -radius; z <= radius; z++) {
@@ -173,13 +176,19 @@ public class LootersCompassItem extends Item {
 
                     for (var y = -maxRadiusY; y <= maxRadiusY; y++) {
                         var checkPos = playerPos.offset(x, y, z);
-                        if (isUnopenedLootrContainer(level, checkPos, player)) return checkPos;
+                        if (isUnopenedLootrContainer(level, checkPos, player)) {
+                            var distanceSq = playerPos.distSqr(checkPos);
+                            if (distanceSq < nearestDistanceSq) {
+                                nearestDistanceSq = distanceSq;
+                                nearestContainer = checkPos;
+                            }
+                        }
                     }
                 }
             }
         }
 
-        return null;
+        return nearestContainer;
     }
 
     @Nullable
