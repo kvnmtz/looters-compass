@@ -14,6 +14,10 @@ When right-clicking with the Looter's Compass in the player's hands, the current
 If no container is found, an idle animation will be shown.
 Searching for the loot containers happens on the client-side, which means that server performance will not be hurt in any way.
 
+This is what it looks like ingame:
+
+![Gameplay Footage](docs/gameplay.webp)
+
 ## ⚙️ Configuration
 
 ### Client
