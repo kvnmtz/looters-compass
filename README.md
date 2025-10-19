@@ -1,3 +1,13 @@
+<p align="center">
+  <img alt="mc-versions" height="56" src="docs/badge_mc_versions.svg">
+  &nbsp
+  <img alt="forge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg">
+  &nbsp
+  <a href="https://modrinth.com/mod/looters-compass"><img alt="modrinth" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg"></a>
+  &nbsp
+  <a href="https://www.curseforge.com/minecraft/mc-mods/looters-compass"><img alt="curseforge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/curseforge_vector.svg"></a>
+</p>
+
 # 🧭 Looter's Compass
 
 Makes finding loot containers from the [Lootr](https://modrinth.com/mod/lootr) mod easier. No more missing out on nearby loot :D
