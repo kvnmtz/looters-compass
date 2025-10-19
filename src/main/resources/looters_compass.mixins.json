@@ -10,6 +10,8 @@
     "LevelRendererMixin",
     "lootr.LootrChestBlockEntityMixin",
     "lootr.LootrShulkerBlockEntityMixin",
+    "lootr.LootrChestBlockRendererMixin",
+    "lootr.LootrShulkerBlockRendererMixin",
     "embeddium.SodiumWorldRendererMixin"
   ],
   "mixins": [
