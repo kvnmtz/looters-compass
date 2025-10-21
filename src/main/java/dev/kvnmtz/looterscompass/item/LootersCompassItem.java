@@ -308,8 +308,6 @@ public class LootersCompassItem extends Item {
             posTag.putInt("z", pos.getZ());
         }
         tag.put(FOUND_POS_TAG, posTag);
-
-        CompassGlowManager.clearGlow();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -318,8 +316,6 @@ public class LootersCompassItem extends Item {
         if (tag != null) {
             tag.remove(FOUND_POS_TAG);
         }
-
-        CompassGlowManager.clearGlow();
     }
 
     @OnlyIn(Dist.CLIENT)
