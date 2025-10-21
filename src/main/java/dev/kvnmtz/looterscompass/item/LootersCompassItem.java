@@ -97,6 +97,11 @@ public class LootersCompassItem extends Item {
             return InteractionResultHolder.success(stack);
         }
 
+        var targetPos = getFoundPosition(stack);
+        if (targetPos == null) {
+            return InteractionResultHolder.success(stack);
+        }
+
         if (level.isClientSide) {
             var cache = LootersCompassItemClient.getCache();
             if (cache.isTrackingEntity && cache.trackedEntityUUID != null) {
@@ -105,12 +110,7 @@ public class LootersCompassItem extends Item {
                     CompassGlowManager.activateGlowForEntity(minecart);
                 }
             } else {
-                var targetPos = getFoundPosition(stack);
-                if (targetPos != null) {
-                    CompassGlowManager.activateGlow(targetPos);
-                } else {
-                    return InteractionResultHolder.success(stack);
-                }
+                CompassGlowManager.activateGlow(targetPos);
             }
         }
 
