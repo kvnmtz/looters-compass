@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 issueTrackerURL = "https://github.com/kvnmtz/looters-compass/issues"
-license = "WTFPL"
+license = "ARR"
 
 [[mods]]
 modId = "looters_compass"
@@ -23,7 +23,7 @@ side = "BOTH"
 [[dependencies.looters_compass]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.20.1,)"
+versionRange = "[1.20.1]"
 ordering = "NONE"
 side = "BOTH"
 
@@ -33,3 +33,7 @@ mandatory = true
 versionRange = "[0.7.29.68,)"
 ordering = "AFTER"
 side = "BOTH"
+[dependencies.looters_compass.mc-publish]
+ignore=false
+modrinth="lootr"
+curseforge="lootr"
