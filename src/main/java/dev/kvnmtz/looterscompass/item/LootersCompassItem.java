@@ -280,7 +280,6 @@ public class LootersCompassItem extends Item {
         return !lootBlockEntity.getOpeners().contains(player.getUUID());
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Nullable
     private BlockPos getFoundPosition(ItemStack stack) {
         var tag = stack.getTag();
